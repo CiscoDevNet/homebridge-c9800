@@ -1,0 +1,64 @@
+{
+  "pluginAlias": "Cisco 9800",
+  "pluginType": "accessory",
+  "schema": {
+		"name": {
+			"title": "Name",
+			"type": "string",
+			"required": true,
+			"default": "Guest WiFi"
+		},
+		"ipAddress": {
+			"title": "IP Address",
+			"type": "string",
+			"required": true,
+			"default": "192.168.1.110"
+		},
+		"username": {
+			"title": "Username",
+			"type": "string",
+			"required": true,
+			"default": ""
+		},
+		"password": {
+			"title": "Password",
+			"type": "string",
+			"required": true,
+			"default": ""
+		},
+		"wlanName": {
+			"title": "WLAN Name",
+			"type": "string",
+			"required": true,
+			"default": "",
+			"description": "The WLAN name may not be the same as the SSID in the WLC config..."
+		},
+			"model": {
+			"title": "Model",
+			"type": "string",
+			"required": false,
+			"default": "C",
+			"description": "Model number to display in Homekit."
+		},
+		"serial": {
+			"title": "Serial Number",
+			"type": "string",
+			"required": false,
+			"default": "",
+			"description": "Serial number to display in Homekit."
+		},
+		"timeout": {
+			"title": "Timeout",
+			"type": "integer",
+			"required": false,
+			"default": false,
+			"description": "Specifies the number of milliseconds before the request times out. Default is 10000."
+		},
+		"debug": {
+			"title": "Debug",
+			"type": "boolean",
+			"required": false,
+			"default": false
+		}
+  }
+}
