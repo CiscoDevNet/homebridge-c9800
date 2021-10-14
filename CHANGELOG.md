@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.4 (2021-10-14)
+
+#### Changes
+
+- Documentation and readability.
+- Updated dependencies.
+
 ## 0.0.3 (2021-10-14)
 
 #### Changes
