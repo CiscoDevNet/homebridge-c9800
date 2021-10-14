@@ -58,7 +58,7 @@ C9800.prototype = {
 					.then(resp => {
 					  if (this.debug) {
 							this.log("https://" + this.ipAddress + query_path + this.wlan);
-							this.log("WLC response: " + resp["data"]["Cisco-IOS-XE-wireless-wlan-cfg:wlan-cfg-entry"]["apf-vap-id-data"]["wlan-status"]);
+							this.log("WLC response: " + resp["data"]["Cisco-IOS-XE-wireless-wlan-cfg:wlan-cfg-entry"]["apf-vap-id-data"]["wlan-status"] + " = " + (resp["data"]["Cisco-IOS-XE-wireless-wlan-cfg:wlan-cfg-entry"]["apf-vap-id-data"]["wlan-status"] === true));
         		}
 
 						callback(null, resp["data"]["Cisco-IOS-XE-wireless-wlan-cfg:wlan-cfg-entry"]["apf-vap-id-data"]["wlan-status"] === true);
