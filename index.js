@@ -76,14 +76,16 @@ C9800.prototype = {
 	//	This will use axios to send a RESTconf GET request to the WLC to find the state of the WLAN
 
 	getPowerState: function (callback) {
+			let powerState;
+			
 			this.api.get("https://" + this.ipAddress + wlan_cfg_path + this.wlan, this.webConfig)
 				.then(resp => {
 					if (this.debug) {
 						this.log("https://" + this.ipAddress + wlan_cfg_path + this.wlan);
 					}
-					this.log("WLC response: " + resp["data"]["Cisco-IOS-XE-wireless-wlan-cfg:wlan-cfg-entry"]["apf-vap-id-data"]["wlan-status"]
-						+ " = " + (resp["data"]["Cisco-IOS-XE-wireless-wlan-cfg:wlan-cfg-entry"]["apf-vap-id-data"]["wlan-status"] === true));
-					callback(null, resp["data"]["Cisco-IOS-XE-wireless-wlan-cfg:wlan-cfg-entry"]["apf-vap-id-data"]["wlan-status"] === true);
+					powerState = resp["data"]["Cisco-IOS-XE-wireless-wlan-cfg:wlan-cfg-entry"]["apf-vap-id-data"]["wlan-status"];
+					this.log("WLC response: " + powerState + " = " + (powerState === true));
+					callback(null, powerState === true);
 				})
 				.catch(err => {
 					callback(err)
