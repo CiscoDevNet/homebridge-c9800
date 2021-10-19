@@ -37,7 +37,7 @@
 			"title": "Model",
 			"type": "string",
 			"required": false,
-			"default": "C",
+			"default": "C9800",
 			"description": "Model number to display in Homekit."
 		},
 		"serial": {
