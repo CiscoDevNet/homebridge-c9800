@@ -17,7 +17,7 @@ NOTE: If you install homebridge like this:
 
     sudo npm install -g --unsafe-perm homebridge
 
-Then all subsequent installations must be like this:
+Then all subsequent plugin installations must be like this:
 
     sudo npm install -g --unsafe-perm homebridge-c9800
 
