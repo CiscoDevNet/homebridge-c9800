@@ -9,8 +9,8 @@ This was tested to work with the Cisco Catalyst 9800CL. It should work with any 
 # Installation
 Run these commands:
 
-    % sudo npm install -g homebridge
-    % sudo npm install -g homebridge-c9800
+    sudo npm install -g homebridge
+    sudo npm install -g homebridge-c9800
 
 
 NOTE: If you install homebridge like this:
