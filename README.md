@@ -2,6 +2,8 @@
 
 # A [Cisco](https://www.cisco.com) Wireless LAN Controller plugin for [Homebridge](https://github.com/nfarina/homebridge).  
 
+---
+
 # Purpose
 
 The purpose of this code is to create a Homebridge plugin to allow a wireless administrator to enable or disable a WLAN through a Light Switch control in Apple’s homekit or through Siri.
