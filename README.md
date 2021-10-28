@@ -9,6 +9,7 @@
 The purpose of this code is to create a Homebridge plugin to allow a wireless administrator to enable or disable a WLAN through a Light Switch control in Apple’s homekit or through Siri.
 
 ![alt text](example.png "Dashboard Example Screenshot")
+![alt text](example2.png "WLC Example Screenshot")
 
 # Intended Audience
 
@@ -21,9 +22,10 @@ This code was originally designed for my personal use at home, to allow me to to
 # How This Code Works
 
 This NodeJS code will accomplish the following tasks:
-1. Creates a set of Light Switch accessories in Homebridge, to be shared with Apple homekit
-2. Exposes two functions to Homebridge – one to interrogate the WLAN status, the other to set the status
-3. Provides any error back to Homebridge for logging
+1. Creates a parent container accessory in Homebridge, to be shared with Apple homekit - one per WLC
+2. Creates a set of child Light Switch accessories in Homebridge, to be shared with Apple homekit - one per WLAN
+3. Exposes two functions to Homebridge – one to interrogate the WLAN status, the other to set the status
+4. Provides any error back to Homebridge for logging
 
 
 # Installation Steps
@@ -42,7 +44,7 @@ Then all subsequent plugin installations must be like this:
     sudo npm install -g --unsafe-perm homebridge-c9800
 
 # Configuration
-Example accessory config (needs to be added to the homebridge config.json):
+Example platform config (needs to be added to the homebridge config.json):
 ```
   "platforms": [
     {
@@ -77,7 +79,7 @@ Example accessory config (needs to be added to the homebridge config.json):
 Field           						| Description
 ----------------------------|------------
 **platform**   							| (required) Must always be "Cisco 9800".
-**name**										| (required) The name you want to use for the platform within Homebridge.
+**name**										| (required) The internal name you want to use for the platform within Homebridge.
 **timeout**									| (optional) The timeout duration in ms for the web API calls.
 **debug**										| (optional) Enables additional logging.
 **displayName**							| (required) The name you want to show for the WLC in homekit.
@@ -97,7 +99,9 @@ To make your WLC work with the plugin:
 
 # FAQ
 1. What is the purpose of each file?
-   - [index.js](index.js) - Contains the NodeJS Homebridge plugin
+   - [index.js](index.js) - Contains the NodeJS Homebridge plugin registration
+   - [c9800platform.js](c9800platform.js) - Contains the NodeJS Homebridge plugin code for the creating the WLC containers and instantiating the WLAN LightSwitches
+   - [c9800platformAccessory.js](c9800platformAccessory.js) - Contains the NodeJS Homebridge plugin code for the WLAN LightSwitches
    - [config.schema.json](config.schema.json) - Contains the schema to allow configuration of the plugin through the Homebridge UI
 2. Does this code use NETCONF, RESTCONF, or both?
    - This code leverages RESTCONF APIs and YANG data models only. NETCONF is not used.
