@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.1.1 (2021-10-28)
+
+#### Changes
+
+- Dynamically load Model, SerialNumber & FirmwareVersion from the WLC.
+- Removed config entries for model and serial.
+
 ## 0.1.0 (2021-10-26)
 
 #### Changes

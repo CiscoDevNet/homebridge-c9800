@@ -15,10 +15,10 @@ class C9800PlatformAccessory {
   	this.accessory = accessory
   	this.services = []
   	  	
-    for (let i = 0; i < this.accessory.context.wlanInfo.wlanCount; i++) {
+    for (let i = 0; i < this.accessory.context.device.wlanCount; i++) {
 	    const iString = i.toString()
 	    
-	    const switchService = this.accessory.getService(iString) ?? this.accessory.addService(this.platform.Service.Switch, this.accessory.context.wlanInfo.ssidList[i], iString)
+	    const switchService = this.accessory.getService(iString) ?? this.accessory.addService(this.platform.Service.Switch, this.accessory.context.device.ssidList[i], iString)
       // To avoid "Cannot add a Service with the same UUID another Service without also defining a unique 'subtype' property." error,
       // when creating multiple services of the same type, you need to use the following syntax to specify a name and subtype id:
       // this.accessory.getService('NAME') ?? this.accessory.addService(this.platform.Service.Switch, 'NAME', 'USER_DEFINED_SUBTYPE');
@@ -33,7 +33,8 @@ class C9800PlatformAccessory {
     this.accessory.getService(this.platform.Service.AccessoryInformation)
       .setCharacteristic(this.platform.Characteristic.Manufacturer, 'Cisco')
       .setCharacteristic(this.platform.Characteristic.Model, this.accessory.context.device.model)
-      .setCharacteristic(this.platform.Characteristic.SerialNumber, this.accessory.context.device.serial);
+      .setCharacteristic(this.platform.Characteristic.SerialNumber, this.accessory.context.device.serial)
+      .setCharacteristic(this.platform.Characteristic.FirmwareRevision, this.accessory.context.device.firmware)
 
 	}
 
@@ -42,7 +43,7 @@ class C9800PlatformAccessory {
 		try {
 			const response = await this.platform.session({
 				method: 'get',
-				url: 'https://'+context.device.ipAddress+wlan_cfg_path+this.accessory.context.wlanInfo.wlanList[index],
+				url: 'https://'+context.device.ipAddress+wlan_cfg_path+this.accessory.context.device.wlanList[index],
 				data: {},
 				auth: {
 					username: context.device.username,
@@ -57,7 +58,7 @@ class C9800PlatformAccessory {
 					this.platform.log.error('Error getting WLAN state %s',err)
 			})
 			const powerState = response["data"]["Cisco-IOS-XE-wireless-wlan-cfg:wlan-cfg-entry"]["apf-vap-id-data"]["wlan-status"];
-			this.platform.log('Get WLAN state for %s = %s',  this.accessory.context.wlanInfo.ssidList[index], (powerState === true))
+			this.platform.log('Get WLAN state for %s = %s',  this.accessory.context.device.ssidList[index], (powerState === true))
 			callback (null, powerState === true)
 		}catch(err) {
 			this.platform.log.error('Error getting WLAN state %s', err)
@@ -68,10 +69,10 @@ class C9800PlatformAccessory {
 	async setPowerState(index, state, callback) {
 		const context = this.accessory.context
 		try {
-			this.platform.log('Setting WLAN state for %s = %s', this.accessory.context.wlanInfo.ssidList[index], state)
+			this.platform.log('Setting WLAN state for %s = %s', this.accessory.context.device.ssidList[index], state)
 			const response = await this.platform.session({
 				method: 'patch',
-				url: 'https://'+context.device.ipAddress+wlan_cfg_path+this.accessory.context.wlanInfo.wlanList[index]+'/apf-vap-id-data/wlan-status',
+				url: 'https://'+context.device.ipAddress+wlan_cfg_path+this.accessory.context.device.wlanList[index]+'/apf-vap-id-data/wlan-status',
 				data: {"Cisco-IOS-XE-wireless-wlan-cfg:wlan-status": state},
 				auth: {
 					username: context.device.username,

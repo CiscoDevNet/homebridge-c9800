@@ -50,20 +50,6 @@
 						"type": "string",
 						"required": true,
 						"default": ""
-					},
-						"model": {
-						"title": "Model",
-						"type": "string",
-						"required": false,
-						"default": "C9800",
-						"description": "Model number to display in Homekit."
-					},
-					"serial": {
-						"title": "Serial Number",
-						"type": "string",
-						"required": false,
-						"default": "",
-						"description": "Serial number to display in Homekit."
 					}
 				}
 			}

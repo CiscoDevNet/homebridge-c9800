@@ -57,17 +57,13 @@ Example platform config (needs to be added to the homebridge config.json):
           "displayName": "Building 1 WLC",
           "ipAddress": "192.168.1.110",
           "username": "admin",
-          "password": "password",
-          "model": "C9800CL",
-          "serial": "myserialno1",
+          "password": "password"
         },
         {
           "displayName": "Building 2 WLC",
           "ipAddress": "192.168.1.115",
           "username": "admin",
-          "password": "password",
-          "model": "C9800CL",
-          "serial": "myserialno2",
+          "password": "password"
         }            
       ],
       "platform": "Cisco 9800"
@@ -87,8 +83,6 @@ Field           						| Description
 **ipAddress**								| (required) The IP address of the WLC (should be static, not DHCP).
 **username**								| (required) The username used to access the WLC.
 **password**								| (required) The password used to access the WLC.
-**model**										| (optional) This shows up in the homekit accessory Characteristics.
-**serial**									| (optional) This shows up in the homekit accessory Characteristics.
 
 To make your WLC work with the plugin:
 
