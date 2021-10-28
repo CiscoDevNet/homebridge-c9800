@@ -44,31 +44,32 @@ Then all subsequent plugin installations must be like this:
 # Configuration
 Example accessory config (needs to be added to the homebridge config.json):
 ```
-		"platforms": [
-      {
-        "name": "Platform C9800",
-				"timeout": 10000,
-				"debug": false;
-				"pdus": [
-					{
-						"displayName": "Building 1 WLC",
-						"ipAddress": "192.168.1.110",
-						"username": "admin",
-						"password": "password",
-						"model": "C9800CL",
-						"serial": "myserialno1",
-          },
-						"displayName": "Building 2 WLC",
-						"ipAddress": "192.168.1.115",
-						"username": "admin",
-						"password": "password",
-						"model": "C9800CL",
-						"serial": "myserialno2",
-					}            
-        ],
-        "platform": "Cisco 9800"
-      }
-    ]
+  "platforms": [
+    {
+      "name": "Platform C9800",
+      "timeout": 10000,
+      "debug": false;
+      "pdus": [
+        {
+          "displayName": "Building 1 WLC",
+          "ipAddress": "192.168.1.110",
+          "username": "admin",
+          "password": "password",
+          "model": "C9800CL",
+          "serial": "myserialno1",
+        },
+        {
+          "displayName": "Building 2 WLC",
+          "ipAddress": "192.168.1.115",
+          "username": "admin",
+          "password": "password",
+          "model": "C9800CL",
+          "serial": "myserialno2",
+        }            
+      ],
+      "platform": "Cisco 9800"
+    }
+  ]
 ```
 
 ### Config Explanation:
