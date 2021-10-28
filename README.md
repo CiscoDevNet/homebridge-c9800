@@ -9,6 +9,7 @@
 The purpose of this code is to create a Homebridge plugin to allow a wireless administrator to enable or disable a WLAN through a Light Switch control in Apple’s homekit or through Siri.
 
 ![alt text](example.png "Dashboard Example Screenshot")
+
 ![alt text](example2.png "WLC Example Screenshot")
 
 # Intended Audience
