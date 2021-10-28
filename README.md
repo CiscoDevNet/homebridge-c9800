@@ -21,7 +21,7 @@ This code was originally designed for my personal use at home, to allow me to to
 # How This Code Works
 
 This NodeJS code will accomplish the following tasks:
-1. Creates a Light Switch accessory in Homebridge, to be shared with Apple homekit
+1. Creates a set of Light Switch accessories in Homebridge, to be shared with Apple homekit
 2. Exposes two functions to Homebridge – one to interrogate the WLAN status, the other to set the status
 3. Provides any error back to Homebridge for logging
 
@@ -44,36 +44,47 @@ Then all subsequent plugin installations must be like this:
 # Configuration
 Example accessory config (needs to be added to the homebridge config.json):
 ```
-		"accessories": [
-			{
-				"name": "Guest WiFi",
-				"ipAddress": "192.168.1.115",
-				"username": "admin",
-				"password": "password",
-				"wlanName": "guest",
-				"model": "C9800CL",
-				"serial": "myserialno",
+		"platforms": [
+      {
+        "name": "Platform C9800",
 				"timeout": 10000,
-				"debug": false,
-				"accessory": "Cisco 9800"
-			}
-		]
+				"debug": false;
+				"pdus": [
+					{
+						"displayName": "Building 1 WLC",
+						"ipAddress": "192.168.1.110",
+						"username": "admin",
+						"password": "password",
+						"model": "C9800CL",
+						"serial": "myserialno1",
+          },
+						"displayName": "Building 2 WLC",
+						"ipAddress": "192.168.1.115",
+						"username": "admin",
+						"password": "password",
+						"model": "C9800CL",
+						"serial": "myserialno2",
+					}            
+        ],
+        "platform": "Cisco 9800"
+      }
+    ]
 ```
 
 ### Config Explanation:
 
 Field           						| Description
 ----------------------------|------------
-**accessory**   						| (required) Must always be "Cisco 9800".
-**name**										| (required) The name you want to use for the light switch widget.
+**platform**   							| (required) Must always be "Cisco 9800".
+**name**										| (required) The name you want to use for the platform within Homebridge.
+**timeout**									| (optional) The timeout duration in ms for the web API calls.
+**debug**										| (optional) Enables additional logging.
+**displayName**							| (required) The name you want to show for the WLC in homekit.
 **ipAddress**								| (required) The IP address of the WLC (should be static, not DHCP).
 **username**								| (required) The username used to access the WLC.
 **password**								| (required) The password used to access the WLC.
-**wlanName**								| (required) The WLAN Name associated with the SSID on the WLC.
 **model**										| (optional) This shows up in the homekit accessory Characteristics.
 **serial**									| (optional) This shows up in the homekit accessory Characteristics.
-**timeout**									| (optional) The timeout duration in ms for the web API calls.
-**debug**										| (optional) Enables additional logging.
 
 To make your WLC work with the plugin:
 

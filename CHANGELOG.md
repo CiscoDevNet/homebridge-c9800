@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.1.0 (2021-10-26)
+
+#### Changes
+
+- Converted to a dynamic platform, to allow multiple WLCs to be used, with multiple SSIDs on each.
+
 ## 0.0.5 (2021-10-14)
 
 #### Changes
