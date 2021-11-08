@@ -15,6 +15,12 @@
 			"default": false,
 			"description": "Specifies the number of milliseconds before the request times out. Default is 10000."
 		},
+		"refreshInterval": {
+			"title": "Refresh Interval",
+			"type": "integer",
+			"required": false,
+			"description": "Specifies the number of minutes between WiFi status polls and updates. Default is 15."
+		},
 		"debug": {
 			"title": "Debug",
 			"type": "boolean",

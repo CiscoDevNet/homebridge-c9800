@@ -52,7 +52,7 @@ Example platform config (needs to be added to the homebridge config.json):
       "name": "Platform C9800",
       "timeout": 10000,
       "debug": false;
-      "pdus": [
+      "wlcs": [
         {
           "displayName": "Building 1 WLC",
           "ipAddress": "192.168.1.110",
@@ -78,6 +78,7 @@ Field           						| Description
 **platform**   							| (required) Must always be "Cisco 9800".
 **name**										| (required) The internal name you want to use for the platform within Homebridge.
 **timeout**									| (optional) The timeout duration in ms for the web API calls.
+**refreshInterval**					| (optional) The refresh interval in minutes for polling the WiFi status.
 **debug**										| (optional) Enables additional logging.
 **displayName**							| (required) The name you want to show for the WLC in homekit.
 **ipAddress**								| (required) The IP address of the WLC (should be static, not DHCP).

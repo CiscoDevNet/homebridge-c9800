@@ -18,6 +18,7 @@ const wlan_cfg_path = wlan_cfg_entries + "/wlan-cfg-entry="
 const wlc_device_inventory = "/restconf/data/Cisco-IOS-XE-device-hardware-oper:device-hardware-data/device-hardware/device-inventory"
 const wlc_software_version = "/restconf/data/Cisco-IOS-XE-device-hardware-oper:device-hardware-data/device-hardware/device-system-data/software-version"
 const timeout = 10000
+const interval = 15 // Minutes
 const	PluginName = packageJson.name
 //const	PlatformName = PLATFORM_NAME
 
@@ -32,6 +33,7 @@ class C9800Platform {
 		this.config = config
 		this.name = config["name"]
 		this.timeout = config["timeout"] === undefined ? timeout : config["timeout"]
+		this.refreshInterval = config["refreshInterval"] === undefined ? (interval * 60000) : (config["refreshInterval"] * 60000)
 		this.debug = config["debug"] === undefined ? false : config["debug"]
 		this.accessories = []
 		this.session = axios.create({

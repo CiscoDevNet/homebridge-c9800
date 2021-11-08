@@ -26,7 +26,6 @@ class C9800PlatformAccessory {
       // register handlers for the On/Off Characteristic
       switchService.getCharacteristic(this.platform.Characteristic.On)
         .on('set', this.setPowerState.bind(this, i))   // SET - bind to the `setPowerState` method below
-        .on('get', this.getPowerState.bind(this, i))		// GET - bind to the `getPowerState` method below
     }
  
     // set accessory information
@@ -35,35 +34,9 @@ class C9800PlatformAccessory {
       .setCharacteristic(this.platform.Characteristic.Model, this.accessory.context.device.model)
       .setCharacteristic(this.platform.Characteristic.SerialNumber, this.accessory.context.device.serial)
       .setCharacteristic(this.platform.Characteristic.FirmwareRevision, this.accessory.context.device.firmware)
+		this.timer = setTimeout(this.poll.bind(this), this.platform.refreshInterval)
+		this.poll()
 
-	}
-
-	async getPowerState(index, callback) {
-		const context = this.accessory.context
-		try {
-			const response = await this.platform.session({
-				method: 'get',
-				url: 'https://'+context.device.ipAddress+wlan_cfg_path+this.accessory.context.device.wlanList[index],
-				data: {},
-				auth: {
-					username: context.device.username,
-					password: context.device.password
-				},
-				headers: {
-					'Accept': 'application/yang-data+json',
-					'Content-Type': 'application/yang-data+json'
-				},
-				timeout: this.platform.timeout
-			}).catch(err => {
-					this.platform.log.error('Error getting WLAN state %s',err)
-			})
-			const powerState = response["data"]["Cisco-IOS-XE-wireless-wlan-cfg:wlan-cfg-entry"]["apf-vap-id-data"]["wlan-status"];
-			this.platform.log('Get WLAN state for %s = %s',  this.accessory.context.device.ssidList[index], (powerState === true))
-			callback (null, powerState === true)
-		}catch(err) {
-			this.platform.log.error('Error getting WLAN state %s', err)
-			callback (err, null)
-		}
 	}
 
 	async setPowerState(index, state, callback) {
@@ -93,6 +66,36 @@ class C9800PlatformAccessory {
 			callback (err)
 		}
 	}
-}
 
+	
+	async poll() {
+		if(this.timer) clearTimeout(this.timer)
+		this.timer = null
+		for (let i = 0; i < this.accessory.context.device.wlanCount; i++) {
+			try {
+				const response = await this.platform.session({
+					method: 'get',
+					url: 'https://' + this.accessory.context.device.ipAddress+wlan_cfg_path + this.accessory.context.device.wlanList[i],
+					data: {},
+					auth: {
+						username: this.accessory.context.device.username,
+						password: this.accessory.context.device.password
+					},
+					headers: {
+						'Accept': 'application/yang-data+json',
+						'Content-Type': 'application/yang-data+json'
+					},
+					timeout: this.platform.timeout
+				}).catch(err => {
+						this.platform.log.error('Error getting WLAN state %s',err)
+				})
+				const powerState = response["data"]["Cisco-IOS-XE-wireless-wlan-cfg:wlan-cfg-entry"]["apf-vap-id-data"]["wlan-status"];
+				this.platform.log('Get WLAN state for %s = %s',  this.accessory.context.device.ssidList[i], (powerState === true))
+				this.accessory.services[i+1].getCharacteristic(Characteristic.On).updateValue(powerState === true)
+			}catch(err) {
+				this.platform.log.error('Error getting WLAN state %s', err)
+			}
+		}	
+	}
+}
 module.exports=C9800PlatformAccessory;
