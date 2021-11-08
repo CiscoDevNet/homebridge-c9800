@@ -51,6 +51,7 @@ Example platform config (needs to be added to the homebridge config.json):
     {
       "name": "Platform C9800",
       "timeout": 10000,
+      "refreshInterval": 15,
       "debug": false;
       "wlcs": [
         {
