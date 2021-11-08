@@ -89,9 +89,10 @@ To make your WLC work with the plugin:
 
 1. Connect your WLC to your network.
 2. Configure your WLC.
-3. Enable restconf on the WLC.
-4. Write down the IP address of the WLC.
-5. Create your config file according to the above example (or using the Homebridge UI).
+3. Configure "aaa authorization exec default local" or equivalent on your WLC.
+4. Enable restconf on the WLC.
+5. Write down the IP address of the WLC.
+6. Create your config file according to the above example (or using the Homebridge UI).
 
 # FAQ
 1. What is the purpose of each file?
@@ -111,7 +112,7 @@ To make your WLC work with the plugin:
    - See the config explanation section above.
 5. Will this work with my model of Wireless LAN Controller?
    - This was tested to work with the Cisco Catalyst 9800CL. It should work with any other model of Cisco Catalyst 9800.
-   - It has not been tested on the Cisco Embedded Wireless LAN Controller on the C9100-series access points.
+   - This has also been tested on the Cisco Embedded Wireless LAN Controller on the C9100-series access points.
 
 
 # More information
