@@ -95,7 +95,8 @@ class C9800PlatformAccessory {
 			}catch(err) {
 				this.platform.log.error('Error getting WLAN state %s', err)
 			}
-		}	
+		}
+		this.timer = setTimeout(this.poll.bind(this), this.platform.refreshInterval)	
 	}
 }
 module.exports=C9800PlatformAccessory;
