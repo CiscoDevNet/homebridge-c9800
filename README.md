@@ -1,6 +1,10 @@
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/CiscoDevNet/homebridge-c9800)
 [![npm](https://badgen.net/npm/v/homebridge-c9800)](https://www.npmjs.com/package/homebridge-c9800)[![npm](https://badgen.net/npm/dw/homebridge-c9800)](https://www.npmjs.com/package/homebridge-c9800)[![npm](https://badgen.net/npm/dt/homebridge-c9800)](https://www.npmjs.com/package/homebridge-c9800)
 
+[![npm](https://badgen.net/npm/v/homebridge-c9800)](https://www.npmjs.com/package/homebridge-c9800)
+[![npm](https://badgen.net/npm/dw/homebridge-c9800)](https://www.npmjs.com/package/homebridge-c9800)
+[![npm](https://badgen.net/npm/dt/homebridge-c9800)](https://www.npmjs.com/package/homebridge-c9800)
+
 # A [Cisco](https://www.cisco.com) Wireless LAN Controller plugin for [Homebridge](https://github.com/nfarina/homebridge).  
 
 ---
