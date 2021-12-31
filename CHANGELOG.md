@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.1.4 (2021-12-31)
+
+#### Changes
+
+- Fixed a polling bug for IOS XE 17.7.1.
+- Updated dependencies.
+
 ## 0.1.3 (2021-11-09)
 
 #### Changes
